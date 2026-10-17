@@ -44,8 +44,8 @@
 - Categoria inventario: fork knowledge/memory.
 
 ### Architettura (contesto)
-_Revisione 2026-10-16, metodo Cum scire, fonte GitHub `Pesach85/agent-me` @ `a107ca8a2ce8` (sola lettura)._
-- **Stack**: backend Python ≥3.11 FastAPI + pydantic-settings (uv, ruff, pytest); frontend React 18 + Vite + TypeScript (vitest, eslint); Docker Compose [VERIFICATO: `backend/pyproject.toml`, `frontend/package.json`, `docker-compose.yml`, `Makefile` @`a107ca8a2ce8`]
+_Revisione 2026-10-16, metodo Cum scire, fonte GitHub `Pesach85/agent-me` @ `a107ca8a2ce8` (sola lettura); riverifica puntuale 2026-10-18 @ `fb37b60`._
+- **Stack**: backend Python ≥3.11 FastAPI + pydantic-settings (uv, ruff, pytest); frontend React 19 + Vite + TypeScript (vitest, eslint); Docker Compose [VERIFICATO: `backend/pyproject.toml`, `frontend/package.json`, `docker-compose.yml`, `Makefile` @`a107ca8a2ce8`; React 19 da `frontend/package.json` @`fb37b60`]
 - **Struttura** [VERIFICATO: albero @`a107ca8a2ce8`]:
   - `backend/` (app/, tests/, uv.lock, Dockerfile): API e workflow multi-agente
   - `frontend/` (src/, nginx.conf): interfaccia web
@@ -53,7 +53,7 @@ _Revisione 2026-10-16, metodo Cum scire, fonte GitHub `Pesach85/agent-me` @ `a10
   - `docs/`: ARCHITECTURE, API, TRUST, DEPLOYMENT; `scripts/`: check docs/versioni/dati privati, evaluate
 - **Flusso dati**: domanda dal browser → `POST /api/v1/chat` o `/collaborate` → retrieval su Markdown in `knowledge/` → ruoli Planner/Researcher/Critic/Writer(/Verifier) → provider LLM esterno opzionale, altrimenti estratto migliore → risposta resa come testo [VERIFICATO: `docs/ARCHITECTURE.md`]
 - **Comandi build/test** [VERIFICATO: `Makefile`, `.github/workflows/ci.yml` @`a107ca8a2ce8`]: `make setup`, `make test` (pytest backend + `npm test`), `make lint`, `make dev` (docker compose); solo sandbox
-- **Confini / cosa NON toccare**: `.env` (solo `.env.example` versionato); `backend/uv.lock`, `frontend/package-lock.json`; tutto upstream (fork 0 avanti / 25 indietro rispetto a `jzjzzzzzzz/agent-me` [VERIFICATO: API compare 2026-10-16])
+- **Confini / cosa NON toccare**: `.env` (solo `.env.example` versionato); `backend/uv.lock`, `frontend/package-lock.json`; tutto upstream (fork di `jzjzzzzzzz/agent-me`; unico file locale: `CLAUDE.md` [VERIFICATO: API compare 2026-10-18])
 - **UI / design**: SPA React/Vite servita da nginx (container) [VERIFICATO: `frontend/`]; design system IGNOTO
 - **Glossario**: *AI Twin* · *knowledge root* (cartella corpus) · *ruoli* (Planner/Researcher/Critic/Writer/Verifier) · *verified policy* (gate finale) · *provider* (LLM esterno opzionale)
 - IGNOTO: 1 campo (design system UI)
